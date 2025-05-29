@@ -15,18 +15,18 @@
 
 Пример шаблонизации команды:
 ```bash
-	$MKVMERGE_BIN \
-		--ui-language en_US --priority lower \
-		--output "$output_file" \
-		--language 0:und --track-name "0:Video" --display-dimensions 0:1920x1080 \
-		--color-matrix-coefficients 0:1 --color-transfer-characteristics 0:1 --color-primaries 0:1 \
-		--language 1:ja --track-name "1:Original" --default-track-flag 1:no --original-flag 1:yes \
-		--language 2:en --track-name "2:English subs" --default-track-flag 2:no --sub-charset 2:UTF-8 \
-		'(' "$input_video" ')' \
-	- `` | `--language "0:ru" --track-name "0:Studio Band" --default-track-flag 0:yes '(' "$input_audio" '` -' \
-	- `` | `--language "0:ru" --track-name "0:Russian subs" --default-track-flag 0:no '(' "$input_subs" '` -' \
-		--track-order 0:0,1:0,0:1,2:0,0:2 \
-		"${EXTRA_ARGS[@]}"
+$MKVMERGE_BIN \
+--ui-language en_US --priority lower \
+--output "$output_file" \
+--language 0:und --track-name "0:Video" --display-dimensions 0:1920x1080 \
+--color-matrix-coefficients 0:1 --color-transfer-characteristics 0:1 --color-primaries 0:1 \
+--language 1:ja --track-name "1:Original" --default-track-flag 1:no --original-flag 1:yes \
+--language 2:en --track-name "2:English subs" --default-track-flag 2:no --sub-charset 2:UTF-8 \
+'(' "$input_video" ')' \
+- `` | `--language "0:ru" --track-name "0:Studio Band" --default-track-flag 0:yes '(' "$input_audio" '` -' \
+- `` | `--language "0:ru" --track-name "0:Russian subs" --default-track-flag 0:no '(' "$input_subs" '` -' \
+--track-order 0:0,1:0,0:1,2:0,0:2 \
+"${EXTRA_ARGS[@]}"
 ```
 
 Аргументы:
@@ -65,12 +65,13 @@ merge-mkv.sh --input-dir /path/to/dir --subs-dir "/path/to/dir/RUS SUB"
 - `-s` | `--suffix` `STRING` - шаблон имени после номера сезона/серии, default: нет
 - `-S` | `--season` `NUM` - фиксироанный номер сезона, default: нет
 - `-E` | `--episode` `NUM` - фиксироанный номер эпизода, default: нет
-- `--start-season` `NUM` - начинать номера сезонов с этого числа, default: 1
-- `--start-episode` `NUM` - начинать номера эпизодов с этого числа, default: 1
-- `-m` | `--maxdepth` `NUM` - максимальная глубина поиска для find, default: 1
+- `--start-season` `NUM` - начинать номера сезонов с этого числа, default: `1`
+- `--start-episode` `NUM` - начинать номера эпизодов с этого числа, default: `1`
+- `-m` | `--maxdepth` `NUM` - максимальная глубина поиска для find, default: `1`
 - `-c` | `--check` - не выполнять переименование, только печатать
 - `-d` | `--debug` - выводить выполняемую команду, если запущен с check
 - `-f` | `--full-num` - сквозная нумерация серий в сезонах
+- Позиционные - каталоги одного сериала (любое количество), default: `.`
 
 Переменные окружения для паттернов нумерации:
 - `$SEASON_PATTERN`, default: `S%02d`
